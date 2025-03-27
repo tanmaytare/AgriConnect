@@ -1,0 +1,53 @@
+<!-- Navbar -->
+<nav class="bg-green-primary text-white py-4 px-8 flex justify-between items-center shadow-md">
+  <!-- Logo and Website Name -->
+  <div class="flex items-center gap-3">
+    <img src="assets/logo.png" alt="AgriConnect Logo" class="w-20 h-20 object-contain" />
+    <h1 class="text-2xl font-bold">AgriConnect</h1>
+  </div>
+  <!-- Navigation Links -->
+   <div *ngIf="!isLoggedIn">
+    <ul class="flex gap-10">
+      <li><a routerLink="/weather" class="hover:underline">Weather</a></li>
+      <li><a href="#features" class="hover:underline">Features</a></li>
+      <li><a href="#about" class="hover:underline">About</a></li>
+      <li><a href="#contact" class="hover:underline">Contact</a></li>
+    </ul>
+   </div>
+   
+   <div *ngIf="isLoggedIn">
+    <ul class="flex gap-10">
+      <li><a routerLink="/marketplace" class="hover:underline">MarketPlace</a></li>
+      <li><a routerLink="/equipment-rental"  class="hover:underline">Rental</a></li>
+      <li><a routerLink="/labor-hiring" class="hover:underline">Labour Hiring</a></li>
+    </ul>
+   </div>
+  <!-- If Not Logged In, Show Signup Button -->
+  <button *ngIf="!isLoggedIn" routerLink="/signup" class="bg-white text-green-dark px-4 py-2 rounded-md font-semibold hover:bg-green-light">
+    Get Started
+  </button>
+
+ <!-- If Logged In, Show User Dropdown -->
+<div *ngIf="isLoggedIn" class="relative">
+  <button (click)="toggleDropdown()" class="bg-white text-green-dark px-4 py-2 rounded-md font-semibold flex items-center">
+    {{ userName }}
+    <img src="assets/user-icon.png" class="w-6 h-6 ml-2 rounded-full" />
+  </button>
+
+  <!-- Dropdown -->
+  <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-40">
+    <button (click)="logout()" class="block w-full text-left px-4 py-2 hover:bg-gray-200">Logout</button>
+    <button (click)="logout()" class="block w-full text-left px-4 py-2 hover:bg-gray-200">Become a Seller</button>
+    <button (click)="logout()" class="block w-full text-left px-4 py-2 hover:bg-gray-200">Edit</button>
+  </div>
+</div>
+
+
+</nav>
+
+<router-outlet></router-outlet>
+
+<!-- Footer -->
+<footer class="bg-green-dark text-white py-4 text-center">
+  <p>&copy; 2025 AgriConnect. All Rights Reserved.</p>
+</footer>

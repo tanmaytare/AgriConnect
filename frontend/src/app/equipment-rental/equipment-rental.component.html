@@ -1,0 +1,104 @@
+<section class="py-16 bg-gray-100 text-gray-800">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="flex justify-between items-center mb-12">
+      <h2 class="text-4xl font-bold text-center text-green-dark">Equipment Rental</h2>
+      <button 
+        class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark"
+        (click)="openAddEquipmentModal()">
+        Add Equipment
+      </button>
+
+      <button routerLink="/rental-dashboard"
+        class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark">
+        My Listed Equipment
+      </button>
+
+      <button 
+        class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark"
+        (click)="openAddEquipmentModal()">
+        My Rentals
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div *ngFor="let equipment of availableEquipment" class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <img [src]="equipment.imageUrl" alt="Equipment Image" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-green-primary mb-4">{{ equipment.name }}</h3>
+          <p class="text-gray-600 mb-4">{{ equipment.description }}</p>
+          <span class="text-lg font-semibold text-green-dark">₹{{ equipment.rentPerDay }}/day</span>
+          <div class="flex justify-between items-center mt-4">
+            <button (click)="rentEquipment(equipment._id)" 
+              class="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">
+              Rent Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Equipment Add Modal -->
+<div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h2 class="text-green-dark text-2xl font-bold mb-4">Add Equipment</h2>
+    <form [formGroup]="equipmentForm" (ngSubmit)="submitEquipmentForm()">
+      <div class="mb-4">
+        <label class="block text-green-dark font-semibold">Equipment Name</label>
+        <input 
+          type="text" formControlName="name"
+          class="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-primary" required />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-green-dark font-semibold">Product Image</label>
+        <input 
+          type="file" 
+          (change)="onFileSelected($event)"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary"
+        />
+      </div>
+      
+
+      <div class="mb-4">
+        <label class="block text-green-dark font-semibold">Category</label>
+        <select formControlName="category" 
+          class="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-primary" required>
+          <option value="Tractor">Tractor</option>
+          <option value="Harvester">Harvester</option>
+          <option value="Plough">Plough</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-green-dark font-semibold">Rent per Day (₹)</label>
+        <input type="number" formControlName="rentPerDay"
+          class="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-primary" required />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-green-dark font-semibold">Location</label>
+        <input type="text" formControlName="location"
+          class="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-primary" required />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-green-dark font-semibold">Description</label>
+        <textarea formControlName="description"
+          class="w-full p-2 border rounded-md focus:ring-2 focus:ring-green-primary" rows="4" required></textarea>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="submit" 
+          class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark">
+          Add Equipment
+        </button>
+      </div>
+    </form>
+
+    <button (click)="closeAddEquipmentModal()" class="mt-4 text-red-500 font-semibold hover:underline">
+      Close
+    </button>
+  </div>
+</div>

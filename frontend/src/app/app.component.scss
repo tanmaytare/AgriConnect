@@ -1,0 +1,54 @@
+// styles.scss
+@keyframes loading-bar {
+  0% { width: 0; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 2s ease-in-out infinite;
+}
+
+/* Hero Section */
+.hero {
+    color: #2e7d32;
+  }
+  
+  /* Placeholder Image Styling */
+  img {
+    transition: transform 0.3s;
+  }
+  
+  img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Feature Cards */
+  section#features .grid div img {
+    width: 8rem; /* Increase image size */
+  }
+  
+  section#features .grid div:hover {
+    transition: transform 0.3s;
+    transform: translateY(-5px);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 3rem;
+    }
+  
+    .hero p {
+      font-size: 1.2rem;
+    }
+  
+    .hero button {
+      font-size: 1rem;
+    }
+  
+    section#features .grid div img {
+      width: 6rem; /* Adjust size for smaller screens */
+    }
+  }
+  

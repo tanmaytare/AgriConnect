@@ -1,0 +1,26 @@
+<div class="flex items-center justify-center min-h-screen bg-green-light">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 class="text-green-dark text-2xl font-bold mb-4">Verify OTP</h2>
+      <p class="text-gray-600 mb-4">Enter the 6-digit OTP sent to your email.</p>
+  
+      <form [formGroup]="otpForm" (ngSubmit)="onVerifyOtp()"> 
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">OTP</label>
+          <input type="text" formControlName="otp" maxlength="6"
+            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary text-center">
+        </div>
+  
+        <button type="submit" class="bg-green-primary text-white w-full py-2 rounded-md font-semibold hover:bg-green-dark">
+          Verify OTP
+        </button>
+      </form>
+  
+      <p class="mt-4 text-center">
+        Didn't receive OTP?
+        <button (click)="onResendOtp()" class="text-green-dark font-semibold hover:underline">
+          Resend OTP
+        </button>
+      </p>
+    </div>
+  </div>
+  

@@ -1,0 +1,37 @@
+<div class="flex items-center justify-center min-h-screen bg-green-light">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 class="text-green-dark text-2xl font-bold mb-4">Login</h2>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">Email</label>
+          <input type="email" formControlName="email" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary">
+        </div>
+  
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">Password</label>
+          <input type="password" formControlName="password" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary">
+        </div>
+
+        <p class="mt-1 mb-4 text-center"> 
+          <a routerLink="/forgot-pass" class="text-green-dark font-semibold hover:underline">Forgot Password ?</a>
+        </p>
+  
+        <button type="submit" [disabled]="loading"
+  class="bg-green-primary text-white w-full py-2 rounded-md font-semibold hover:bg-green-dark">
+  {{ loading ? 'Logging in...' : 'Login' }}
+</button>
+  
+        <p class="mt-4 text-center">
+          New user? 
+          <a routerLink="/signup" class="text-green-dark font-semibold hover:underline">Sign Up</a>
+        </p>
+      </form>
+
+      <!-- Show error message -->
+     <p *ngIf="loginError" class="text-red-500 text-sm mt-2">{{ loginError }}</p>
+
+
+    </div>
+  </div>
+  

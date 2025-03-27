@@ -1,0 +1,51 @@
+<!-- Equipment Management Section -->
+<section class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-8">
+      <!-- Heading -->
+      <h2 class="text-4xl font-bold text-green-dark mb-8">Manage Your Equipment</h2>
+  
+      <!-- Equipment List -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div *ngFor="let equipment of myEquipments" class="bg-white rounded-lg shadow-lg overflow-hidden">
+          
+          <!-- Equipment Image -->
+          <img [src]="equipment.image" alt="Equipment Image" class="w-full h-48 object-cover">
+          
+          <div class="p-6">
+            <!-- Equipment Name -->
+            <h3 class="text-xl font-semibold text-green-primary mb-2">{{ equipment.name }}</h3>
+            
+            <!-- Equipment Details -->
+            <p class="text-gray-600 mb-2"><strong>Category:</strong> {{ equipment.category }}</p>
+            <p class="text-gray-600 mb-2"><strong>Rental Price:</strong> ₹{{ equipment.rentalPrice }}/day</p>
+            <p class="text-gray-600 mb-2"><strong>Status:</strong> 
+              <span class="px-2 py-1 rounded-md text-white" 
+                    [ngClass]="{'bg-green-500': equipment.status === 'Available', 
+                                'bg-yellow-500': equipment.status === 'Rented',
+                                'bg-gray-500': equipment.status === 'Under Maintenance'}">
+                {{ equipment.status }}
+              </span>
+            </p>
+  
+            <!-- Rental History (If Rented) -->
+            <div *ngIf="equipment.rentalHistory.length > 0" class="mt-4 p-4 border rounded-md bg-gray-50">
+              <h4 class="text-md font-bold text-green-dark">Rental History</h4>
+              <ul class="list-disc ml-4 text-gray-600">
+                <li *ngFor="let rental of equipment.rentalHistory">
+                  Rented by <strong>{{ rental.renterName }}</strong> for {{ rental.duration }} days at ₹{{ rental.price }}.
+                </li>
+              </ul>
+            </div>
+  
+            <!-- Delete Equipment Button -->
+            <button (click)="deleteEquipment(equipment._id)" 
+                    class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-red-700 w-full">
+              Delete Equipment
+            </button>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

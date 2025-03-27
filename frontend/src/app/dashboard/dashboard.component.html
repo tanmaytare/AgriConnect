@@ -1,0 +1,152 @@
+<!-- Hero Section -->
+<section class="hero bg-white py-16 px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-16">
+      <!-- Welcome Message -->
+      <div class="text-center md:text-left">
+        <h1 class="text-4xl font-extrabold mb-6 text-green-dark">
+          Welcome, {{ userName }}!
+        </h1>
+        <p class="text-xl mb-6">
+          Explore AgriConnect’s features and revolutionize your farming experience.
+        </p>
+        <button class="bg-green-light px-6 py-3 rounded-md text-green-dark font-bold hover:bg-green-dark hover:text-white mt-6">
+          Start Exploring
+        </button>
+      </div>
+      <!-- Image -->
+      <div class="relative">
+        <img src="assets\dashboard.jpg" alt="Dashboard Image" class="w-full max-w-lg mx-auto md:ml-auto" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features" class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-12 text-green-dark">Dashboard Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Marketplace -->
+        <div class="feature-card">
+          <a [routerLink]="['/marketplace']">
+            <img src="assets/sell.jpg" alt="Marketplace" />
+            <h3>Digital Marketplace</h3>
+            <p>Buy and sell crops, seeds, and farming essentials with transparent pricing.</p>
+          </a>
+        </div>
+  
+        <!-- Equipment Rental -->
+        <div class="feature-card">
+          <a [routerLink]="['/equipment-rental']">
+            <img src="assets/rent.jpg" alt="Equipment Rental" />
+            <h3>Equipment Rental</h3>
+            <p>Rent or lease farming equipment with ease.</p>
+          </a>
+        </div>
+  
+        <!-- Labor Hiring -->
+        <div class="feature-card">
+          <a [routerLink]="['/labor-hiring']">
+            <img src="assets/labour.jpg" alt="Labor Hiring" />
+            <h3>Labor Hiring</h3>
+            <p>Find workers for seasonal jobs like harvesting and planting.</p>
+          </a>
+        </div>
+  
+        <!-- Crop & Fertilizer Prediction -->
+        <div class="feature-card">
+          <a [routerLink]="['/crop-prediction']">
+            <img src="assets/prediction.jpg" alt="Crop Prediction" />
+            <h3>Crop & Fertilizer Prediction</h3>
+            <p>Use AI-driven insights to choose the best crops and fertilizers.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- Marketplace Section -->
+<section id="marketplace" class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-6 text-green-dark">Digital Marketplace</h2>
+  
+      <div [routerLink]="['/marketplace']">
+        <!-- Button aligned to right -->
+      <div class="text-right mb-6">
+        <button [routerLink]="['/marketplace']" class="explore-btn">
+          Explore More →
+        </button>
+      </div>
+  
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div *ngFor="let product of products" class="feature-card">
+          <img [src]="product.image" alt="Product Image" />
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <div class="price-button">
+            <span>₹{{ product.price }}</span>
+            <button>Buy Now</button>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+    </div>
+  </section>
+  
+  <!-- Equipment Rental Section -->
+  <section id="equipment-rental" class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-8">
+
+      <h2 class="text-4xl font-bold text-center mb-6 text-green-dark">Farm Equipment Rental</h2>
+      <div routerLink="/equipment-rental">
+        <div class="text-right mb-6">
+            <button [routerLink]="['/equipment-rental']" class="explore-btn">
+              Explore More →
+            </button>
+          </div>
+      
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div *ngFor="let equipment of equipmentList" class="feature-card">
+              <img [src]="equipment.image" alt="Equipment Image" />
+              <h3>{{ equipment.name }}</h3>
+              <p>{{ equipment.description }}</p>
+              <div class="price-button">
+                <span>₹{{ equipment.pricePerDay }} / day</span>
+                <button>Rent Now</button>
+              </div>
+            </div>
+          </div>
+      </div>      
+    </div>
+  </section>
+  
+  <!-- Labor Hiring Section -->
+  <section id="labor-hiring" class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-6 text-green-dark">Labor Hiring</h2>
+        
+      <div routerLink="/labor-hiring">
+        <div class="text-right mb-6">
+            <button [routerLink]="['/labor-hiring']" class="explore-btn">
+              Explore More →
+            </button>
+          </div>
+      
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div *ngFor="let job of jobListings" class="feature-card">
+              <h3>{{ job.title }}</h3>
+              <p>{{ job.description }}</p>
+              <div class="price-button">
+                <span>₹{{ job.dailyWage }} / day</span>
+                <button>Apply Now</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+    </div>
+  </section>
+  
+  
+
+  

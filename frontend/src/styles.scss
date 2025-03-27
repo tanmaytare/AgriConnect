@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+// styles.scss
+@keyframes loading-bar {
+    0% { width: 0; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+  }
+  
+  .animate-loading-bar {
+    animation: loading-bar 2s ease-in-out infinite;
+  }

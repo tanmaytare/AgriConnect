@@ -1,0 +1,167 @@
+<!-- Hero Section -->
+<section class="hero bg-white py-16 px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-16">
+      <!-- Text Content -->
+      <div class="text-center md:text-left">
+        <h1 class="text-5xl font-extrabold mb-6 text-green-dark">
+          Welcome to AgriConnect
+        </h1>
+        <p class="text-xl mb-6">
+          Revolutionizing the way farmers buy, sell, and connect. Empowering
+          agriculture with technology for a better tomorrow.
+        </p>
+        <button class="bg-green-light px-6 py-3 rounded-md text-green-dark font-bold hover:bg-green-dark hover:text-white mt-6">
+          Explore Now
+        </button>
+      </div>
+      <!-- Image -->
+      <div class="relative">
+        <img
+          src="assets/back.jpg"
+          alt="Hero Vector"
+          class="w-full max-w-lg mx-auto md:ml-auto"
+        />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features" class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-12 text-green-dark">Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center min-h-[400px] flex flex-col items-center">
+          <a [routerLink]="['/marketplace']">
+            <div class="flex justify-center items-center h-[300px]">
+              <img
+                src="assets/sell.jpg"
+                alt="Marketplace"
+                class="mb-8"
+                style="height: 300px; width: auto;"
+              />
+            </div>
+            <h3 class="text-2xl font-semibold text-green-primary mb-4">
+              Digital Marketplace
+            </h3>
+            <p>
+              Buy and sell crops, seeds, fertilizers, and more with transparent pricing.
+            </p>
+          </a>
+        </div>
+  
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center min-h-[400px] flex flex-col items-center">
+          <a [routerLink]="['/equipment-rental']">
+            <div class="flex justify-center items-center h-[300px]">
+              <img
+                src="assets/rent.jpg"
+                alt="Equipment Rental"
+                class="mb-8"
+                style="height: 300px; width: auto;"
+              />
+            </div>
+            <h3 class="text-2xl font-semibold text-green-primary mb-4">
+              Equipment Rental
+            </h3>
+            <p>
+              Rent or lease farming equipment easily, ensuring access to essential tools.
+            </p>
+          </a>
+        </div>
+  
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center min-h-[400px] flex flex-col items-center">
+          <a [routerLink]="['/labor-hiring']">
+            <div class="flex justify-center items-center h-[300px]">
+              <img
+                src="assets/labour.jpg"
+                alt="Labor Hiring"
+                class="mb-8"
+                style="height: 300px; width: auto;"
+              />
+            </div>
+            <h3 class="text-2xl font-semibold text-green-primary mb-4">
+              Labor Hiring
+            </h3>
+            <p>
+              Find daily wage workers for seasonal labor needs like harvesting and planting.
+            </p>
+          </a>
+        </div>
+  
+        <!-- Feature 4 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center min-h-[400px] flex flex-col items-center">
+          <a [routerLink]="['/crop-prediction']">
+            <div class="flex justify-center items-center h-[300px]">
+              <img
+                src="assets/prediction.jpg"
+                alt="Crop Prediction"
+                class="mb-8"
+                style="height: 300px; width: auto;"
+              />
+            </div>
+            <h3 class="text-2xl font-semibold text-green-primary mb-4">
+              Crop & Fertilizer Prediction
+            </h3>
+            <p>
+              Use data-driven insights to predict suitable crops and fertilizers based on soil and weather.
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-white text-gray-800">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <h2 class="text-4xl font-bold text-green-primary mb-8">About Us</h2>
+      <p class="text-lg">
+        AgriConnect aims to bridge the gap between farmers and technology by
+        providing a centralized platform to enhance productivity, profitability,
+        and community collaboration.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-4xl mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-8 text-green-primary">Contact Us</h2>
+      <form class="space-y-6">
+        <div>
+          <label class="block mb-2 font-semibold">Name</label>
+          <input
+            type="text"
+            class="w-full p-3 border border-gray-300 rounded-lg"
+            placeholder="Your Name"
+          />
+        </div>
+        <div>
+          <label class="block mb-2 font-semibold">Email</label>
+          <input
+            type="email"
+            class="w-full p-3 border border-gray-300 rounded-lg"
+            placeholder="Your Email"
+          />
+        </div>
+        <div>
+          <label class="block mb-2 font-semibold">Message</label>
+          <textarea
+            class="w-full p-3 border border-gray-300 rounded-lg"
+            rows="4"
+            placeholder="Your Message"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="bg-green-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-green-dark"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+  

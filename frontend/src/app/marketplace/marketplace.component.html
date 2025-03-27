@@ -1,0 +1,46 @@
+<section id="marketplace" class="relative py-16 bg-gray-100 text-gray-800">
+  <div class="max-w-7xl mx-auto px-8">
+
+    
+    <!-- Buttons Positioned Above and to the Right -->
+    <div class="absolute top-0 right-0 mt-8 mr-8 flex space-x-8 mb-8">
+      <!-- Buttons -->
+      <button routerLink="/cart" class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark">My Cart</button>
+      <button routerLink="/orders" class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark">My Orders</button>
+      <button routerLink="/products" class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark">Manage Products</button>
+    </div>
+
+    <h2 class="text-4xl font-bold text-center mb-12 text-green-dark">Digital Marketplace</h2>
+
+
+    <!-- Search and Filter Bar -->
+    <div class="flex justify-between mb-8">
+      <input type="text" placeholder="Search products..." [(ngModel)]="searchQuery"
+        (input)="searchProducts()" class="px-4 py-2 border rounded-md">
+      <select [(ngModel)]="selectedCategory" (change)="filterByCategory()" class="px-4 py-2 border rounded-md">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div *ngFor="let product of filteredProducts" class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <img [src]="product.image" alt="Product Image" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-green-primary mb-2">{{ product.name }}</h3>
+          <p class="text-gray-600 mb-2">{{ product.description }}</p>
+          <span class="text-lg font-semibold text-green-dark">₹{{ product.price }}</span>
+
+          <!-- Quantity Selection and Add to Cart -->
+          <div class="flex mt-4">
+            <input type="number" [(ngModel)]="product.quantity" min="1" class="w-16 px-2 border rounded-md mr-2">
+            <button (click)="addToCart(product)" class="bg-green-light text-green-dark px-4 py-2 rounded-md font-semibold hover:bg-green-dark hover:text-white">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<div class="container mt-4">
+    <h2>Rented Equipment History</h2>
+    <div *ngIf="rentedHistory.length === 0" class="alert alert-info">
+      No rentals yet.
+    </div>
+    <div *ngFor="let rental of rentedHistory" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ rental.equipment.name }}</h5>
+        <p class="card-text">Category: {{ rental.equipment.category }}</p>
+        <p class="card-text">Rented By: {{ rental.renter.name }} ({{ rental.renter.email }})</p>
+        <p class="card-text">Price: ₹{{ rental.equipment.rentalPrice }}</p>
+        <p class="card-text">
+          Rental Period: {{ rental.startDate | date }} - {{ rental.endDate | date }}
+        </p>
+        <p class="card-text">Status: <strong>{{ rental.status }}</strong></p>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,26 @@
+<div class="max-w-4xl mx-auto p-8 bg-white shadow-lg">
+    <h2 class="text-2xl font-bold mb-6">Your Cart</h2>
+  
+    <div *ngFor="let item of cartItems">
+      <div class="flex justify-between items-center mb-4">
+        <span>{{ item.name }} (x{{ item.quantity }})</span>
+        <span>₹{{ item.price * item.quantity }}</span>
+        
+        <!-- Quantity Update Buttons -->
+        <div class="flex items-center">
+          <button (click)="decreaseQuantity(item)" class="bg-gray-300 px-2 py-1 rounded-md">-</button>
+          <span class="mx-2">{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" class="bg-gray-300 px-2 py-1 rounded-md">+</button>
+        </div>
+  
+        <button (click)="removeItem(item.productId)" class="text-red-500">Remove</button>
+      </div>
+    </div>
+  
+    <hr class="my-4">
+  
+    <a routerLink="/checkout" class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark">
+      Proceed to Checkout
+    </a>
+  </div>
+  

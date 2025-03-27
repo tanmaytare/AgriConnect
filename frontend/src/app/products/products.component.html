@@ -1,0 +1,119 @@
+<!-- Main Section for Managing Products -->
+<section class="py-16 bg-gray-100 text-gray-800">
+    <div class="max-w-7xl mx-auto px-8">
+      <!-- Container for button and heading -->
+      <div class="flex justify-between items-center mb-12">
+        <h2 class="text-4xl font-bold text-center text-green-dark">Manage Your Products</h2>
+        <!-- Sell Product Button aligned to the right -->
+        <button 
+          class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark"
+          (click)="openSellProductModal()">
+          Sell Product
+        </button>
+      </div>
+    
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div *ngFor="let product of userProducts" class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img [src]="product.image" alt="Product Image" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-green-primary mb-4">{{ product.name }}</h3>
+            <p class="text-gray-600 mb-4">{{ product.description }}</p>
+            <div class="flex justify-between items-center">
+              <span class="text-lg font-semibold text-green-dark">₹{{ product.price }}</span>
+              <button (click)="deleteProduct(product._id)" 
+              class="bg-red-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-red-700">
+              Delete
+            </button>            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Popup for Sell Product Form -->
+  <div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 class="text-green-dark text-2xl font-bold mb-4">Sell Your Product</h2>
+
+      <form [formGroup]="productForm" (ngSubmit)="submitProductForm()">
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">Product Name</label>
+          <input 
+            type="text" 
+            formControlName="name" 
+            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary" 
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">Category</label>
+          <select 
+            formControlName="category" 
+            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary" 
+            required>
+            <option value="Crop">Crop</option>
+            <option value="Seed">Seed</option>
+            <option value="Fertilizer">Fertilizer</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">Price</label>
+          <input 
+            type="number" 
+            formControlName="price" 
+            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary" 
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">Quantity</label>
+          <input 
+            type="number" 
+            formControlName="quantity" 
+            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary" 
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-green-dark font-semibold">Description</label>
+          <textarea 
+            formControlName="description" 
+            class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary" 
+            rows="4" 
+            required
+          ></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-green-dark font-semibold">Product Image</label>
+            <input 
+              type="file" 
+              (change)="onFileSelected($event)"
+              class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-primary"
+            />
+          </div>
+          
+
+        <div class="flex justify-end">
+            <button 
+            type="submit" 
+            [disabled]="!imageUrl" 
+            class="bg-green-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-green-dark disabled:bg-gray-400">
+            Submit Product
+          </button>
+          
+        </div>
+      </form>
+
+      <button 
+        (click)="closeSellProductModal()" 
+        class="mt-4 text-red-500 font-semibold hover:underline">
+        Close
+      </button>
+    </div>
+  </div>
