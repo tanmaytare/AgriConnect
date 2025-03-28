@@ -1,0 +1,56 @@
+<div class="agri-news px-6 py-8">
+    <h2 class="text-2xl font-bold mb-6 text-green-700 text-center">🌾 Latest Agriculture News & Schemes</h2>
+
+    <!-- Search -->
+    <div class="flex mb-4 space-x-2">
+        <input 
+            type="text" 
+            [(ngModel)]="query" 
+            placeholder="Search agriculture news..." 
+            (keyup.enter)="searchNews($event)" 
+            class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <button (click)="searchNews($event)" class="bg-green-600 text-white px-4 rounded hover:bg-green-700">Search</button>
+    </div>
+
+    <!-- Filter -->
+    <div class="flex flex-wrap gap-2 mb-6">
+        <button 
+            *ngFor="let cat of categories" 
+            (click)="filterByCategory(cat)"
+            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm hover:bg-green-600 hover:text-white transition"
+        >{{ cat }}</button>
+    </div>
+
+    <!-- News Cards Grid -->
+    <div *ngIf="newsList.length > 0; else noNews" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+        <div *ngFor="let news of newsList" class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden flex flex-col">
+
+            <!-- Image -->
+            <img [src]="news.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image'" alt="News Image" class="w-full h-44 object-cover">
+
+            <!-- Content -->
+            <div class="p-4 flex flex-col flex-grow space-y-1">
+                <h3 class="text-lg font-semibold text-green-800 line-clamp-2">{{ news.title }}</h3>
+                <p class="text-sm text-gray-500">By {{ news.author || 'Unknown' }} | {{ news.source?.name || 'N/A' }}</p>
+                <p class="text-xs text-gray-400">{{ news.publishedAt | date:'medium' }}</p>
+                <p class="text-sm text-gray-600 flex-grow">{{ news.content ? (news.content | slice:0:100) + '...' : '' }}</p>
+
+                <!-- Read More -->
+                <a [href]="news.url" target="_blank" class="mt-2 inline-block text-green-600 hover:underline font-semibold">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-between items-center mt-8">
+        <button (click)="prevPage()" [disabled]="page === 1" class="bg-green-600 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-green-700 transition">Previous</button>
+        <span class="text-sm">Page {{ page }} |  {{ totalResults }} </span>
+        <button (click)="nextPage()" [disabled]="page * 8 >= totalResults" class="bg-green-600 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-green-700 transition">Next</button>
+    </div>
+
+    <ng-template #noNews>
+        <p class="text-center text-gray-500 mt-4">No news found.</p>
+    </ng-template>
+</div>

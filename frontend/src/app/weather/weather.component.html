@@ -1,53 +1,67 @@
-<div class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-green-primary to-green-light p-5">
-    <div class="bg-white shadow-2xl rounded-xl p-6 max-w-sm w-full text-center">
-      <h2 class="text-2xl font-semibold text-gray-700">🌦️ Weather Forecast</h2>
-  
-      <!-- Search Bar -->
-      <div class="flex mt-4">
-        <input
-          type="text"
-          [(ngModel)]="city"
-          placeholder="Enter city..."
-          class="w-full p-3 border rounded-l-lg focus:outline-none"
-        />
-        <button (click)="fetchWeather()" class="bg-green-primary text-white px-5 py-3 rounded-r-lg hover:bg-green-dark">
-          🔍
-        </button>
-      </div>
-  
-      <!-- Loading Spinner -->
-      <div *ngIf="loading" class="mt-5">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-4 border-green-primary mx-auto"></div>
-        <p class="text-gray-500 mt-2">Fetching weather...</p>
-      </div>
-  
-      <!-- Weather Data Display -->
-      <div *ngIf="weatherData" class="mt-5">
-        <h3 class="text-3xl font-bold text-gray-800">{{ weatherData.name }}, {{ weatherData.sys.country }}</h3>
-        <p class="text-xl text-gray-600">{{ weatherData.weather[0].description | titlecase }}</p>
-  
-        <!-- Weather Icon -->
-        <img
-          [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'"
-          alt="Weather icon"
-          class="mx-auto my-4"
-        />
-  
-        <!-- Temperature -->
-        <p class="text-5xl font-extrabold text-green-primary">{{ weatherData.main.temp }}°C</p>
-  
-        <!-- Additional Info -->
-        <div class="flex justify-between mt-5 text-gray-700">
-          <div>
-            <p class="text-lg">💨 Wind</p>
-            <p>{{ weatherData.wind.speed }} m/s</p>
-          </div>
-          <div>
-            <p class="text-lg">💧 Humidity</p>
-            <p>{{ weatherData.main.humidity }}%</p>
-          </div>
+<div class="flex flex-row items-start justify-center min-h-screen bg-gradient-to-r from-green-primary to-green-light p-5 space-x-6">
+  <!-- Weather Forecast Box -->
+  <div class="bg-white shadow-2xl rounded-xl p-6 max-w-sm w-full text-center mt-20">
+    <h2 class="text-2xl font-semibold text-gray-700">🌦️ Weather Forecast</h2>
+
+    <!-- Search Bar -->
+    <div class="flex mt-4">
+      <input
+        type="text"
+        [(ngModel)]="city"
+        placeholder="Enter city..."
+        class="w-full p-3 border rounded-l-lg focus:outline-none"
+      />
+      <button (click)="fetchWeather()" class="bg-green-primary text-white px-5 py-3 rounded-r-lg hover:bg-green-dark">
+        🔍
+      </button>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="mt-5">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-4 border-green-primary mx-auto"></div>
+      <p class="text-gray-500 mt-2">Fetching weather...</p>
+    </div>
+
+    <!-- Weather Data Display -->
+    <div *ngIf="weatherData" class="mt-5">
+      <h3 class="text-3xl font-bold text-gray-800">{{ weatherData.name }}, {{ weatherData.sys.country }}</h3>
+      <p class="text-xl text-gray-600">{{ weatherData.weather[0].description | titlecase }}</p>
+
+      <!-- Weather Icon -->
+      <img
+        [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'"
+        alt="Weather icon"
+        class="mx-auto my-4"
+      />
+
+      <!-- Temperature -->
+      <p class="text-5xl font-extrabold text-green-primary">{{ weatherData.main.temp }}°C</p>
+
+      <!-- Additional Info -->
+      <div class="flex justify-between mt-5 text-gray-700">
+        <div>
+          <p class="text-lg">💨 Wind</p>
+          <p>{{ weatherData.wind.speed }} m/s</p>
+        </div>
+        <div>
+          <p class="text-lg">💧 Humidity</p>
+          <p>{{ weatherData.main.humidity }}%</p>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <!-- Weather Forecast Graph Box -->
+  <div *ngIf="isBrowser()" class="bg-white shadow-2xl rounded-xl p-6 w-full text-center mt-20">
+    <h2 class="text-2xl font-semibold text-gray-700">🌦️ Weather Forecast Graph</h2>
+
+    <!-- Increased the width of the chart -->
+    <div class="mt-5 w-full h-96">
+      <canvas baseChart 
+              [data]="lineChartData" 
+              [options]="lineChartOptions" 
+              chartType="line">
+      </canvas>
+    </div>
+  </div>
+</div>

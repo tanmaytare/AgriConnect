@@ -20,6 +20,7 @@ import { MyjobsComponent } from './myjobs/myjobs.component';
 import { RentalDashboardComponent } from './rental-dashboard/rental-dashboard.component';
 import { WeatherComponent } from './weather/weather.component';
 import { MarketComponent } from './market/market.component';
+import { AgriNewsComponent } from './agri-news/agri-news.component';
 
 
 export const routes: Routes = [
@@ -43,6 +44,7 @@ export const routes: Routes = [
   { path: 'rental-dashboard', component: RentalDashboardComponent,canActivate:[authGuard] },
   { path: 'weather', component: WeatherComponent },
   { path: 'market', component: MarketComponent },
+  { path: 'news', component: AgriNewsComponent },
 
 ];
 

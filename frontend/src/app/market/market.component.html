@@ -1,5 +1,5 @@
 <div class="p-6">
-  <h2 class="text-2xl font-bold text-green-primary">Market Prices</h2>
+  <h2 class="text-2xl font-bold text-green-primary  text-center">Check Today's Market Prices</h2>
 
   <!-- Search & Filters -->
   <div class="flex flex-wrap gap-4 my-4">
@@ -7,24 +7,24 @@
       type="text"
       placeholder="Search..."
       [(ngModel)]="searchTerm"
-      (ngModelChange)="applyFilters(searchTerm)"
+      (ngModelChange)="applyFilters()"
       class="border p-2 rounded w-1/4"
     />
-    <select [(ngModel)]="selectedState" (change)="applyFilters(selectedState)" class="border p-2 rounded">
+
+    <select [(ngModel)]="selectedState" (change)="applyFilters()" class="border p-2 rounded">
       <option value="">All States</option>
       <option *ngFor="let state of uniqueStates" [value]="state">{{ state }}</option>
     </select>
     
-    <select [(ngModel)]="selectedMarket" (change)="applyFilters(selectedMarket)" class="border p-2 rounded">
+    <select [(ngModel)]="selectedMarket" (change)="applyFilters()" class="border p-2 rounded">
       <option value="">All Markets</option>
       <option *ngFor="let market of uniqueMarkets" [value]="market">{{ market }}</option>
     </select>
     
-    <select [(ngModel)]="selectedCommodity" (change)="applyFilters(selectedCommodity)" class="border p-2 rounded">
+    <select [(ngModel)]="selectedCommodity" (change)="applyFilters()" class="border p-2 rounded">
       <option value="">All Commodities</option>
       <option *ngFor="let commodity of uniqueCommodities" [value]="commodity">{{ commodity }}</option>
     </select>
-    
   </div>
 
   <!-- Loading & No Data Handling -->
@@ -34,45 +34,43 @@
   </div>
 
   <!-- Market Prices Table -->
-<table *ngIf="filteredData.length > 0" class="table-auto w-full border-collapse border border-gray-400 mt-4">
-  <thead>
-    <tr class="bg-green-light text-left">
-      <th (click)="sortData('State')" class="cursor-pointer border border-gray-400 px-4 py-2">State ⬍</th>
-      <th (click)="sortData('District')" class="cursor-pointer border border-gray-400 px-4 py-2">District ⬍</th>
-      <th (click)="sortData('Market')" class="cursor-pointer border border-gray-400 px-4 py-2">Market ⬍</th>
-      <th (click)="sortData('Commodity')" class="cursor-pointer border border-gray-400 px-4 py-2">Commodity ⬍</th>
-      <th class="border border-gray-400 px-4 py-2">Variety</th>
-      <th class="border border-gray-400 px-4 py-2">Grade</th>
-      <th class="border border-gray-400 px-4 py-2">Arrival Date</th>
-      <th (click)="sortData('Min_Price')" class="cursor-pointer border border-gray-400 px-4 py-2">Min Price ⬍</th>
-      <th (click)="sortData('Max_Price')" class="cursor-pointer border border-gray-400 px-4 py-2">Max Price ⬍</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of filteredData | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-      <td class="border border-gray-400 px-4 py-2">{{ item.State }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.District }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.Market }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.Commodity }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.Variety }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.Grade }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.Arrival_Date }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.Min_Price }}</td>
-      <td class="border border-gray-400 px-4 py-2">{{ item.Max_Price }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- Pagination Controls -->
-<div *ngIf="filteredData.length > 0" class="flex justify-center my-4">
-  <pagination-controls
-    [totalItems]="totalItems"
-    [itemsPerPage]="itemsPerPage"
-    [currentPage]="currentPage"
-    (pageChanged)="changePage($event)">
-  </pagination-controls>
-</div>
-
-
-
+  <table *ngIf="filteredData.length > 0" class="table-auto w-full border-collapse border border-gray-400 mt-4">
+    <thead>
+      <tr class="bg-green-light text-left">
+        <th (click)="sortData('State')" class="cursor-pointer border border-gray-400 px-4 py-2">State ⬍</th>
+        <th (click)="sortData('District')" class="cursor-pointer border border-gray-400 px-4 py-2">District ⬍</th>
+        <th (click)="sortData('Market')" class="cursor-pointer border border-gray-400 px-4 py-2">Market ⬍</th>
+        <th (click)="sortData('Commodity')" class="cursor-pointer border border-gray-400 px-4 py-2">Commodity ⬍</th>
+        <th class="border border-gray-400 px-4 py-2">Variety</th>
+        <th class="border border-gray-400 px-4 py-2">Grade</th>
+        <th class="border border-gray-400 px-4 py-2">Arrival Date</th>
+        <th (click)="sortData('Min_Price')" class="cursor-pointer border border-gray-400 px-4 py-2">Min Price ⬍</th>
+        <th (click)="sortData('Max_Price')" class="cursor-pointer border border-gray-400 px-4 py-2">Max Price ⬍</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of displayedData">
+        <td class="border border-gray-400 px-4 py-2">{{ item.State }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.District }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.Market }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.Commodity }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.Variety }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.Grade }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.Arrival_Date }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.Min_Price }}</td>
+        <td class="border border-gray-400 px-4 py-2">{{ item.Max_Price }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Pagination Controls -->
+  <div class="flex justify-center mt-4" *ngIf="filteredData.length > itemsPerPage">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="px-4 py-2 mx-1 bg-gray-300 rounded">
+      Previous
+    </button>
+    <span class="px-4 py-2 mx-1">Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage * itemsPerPage >= filteredData.length" class="px-4 py-2 mx-1 bg-gray-300 rounded">
+      Next
+    </button>
+  </div>
 </div>

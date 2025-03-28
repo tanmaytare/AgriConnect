@@ -12,7 +12,7 @@ export class MarketPriceService {
 
   getMarketPrices(offset: number, limit: number, filters: any): Observable<any> {
     let params = new HttpParams()
-      .set('api-key', '579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b')
+      .set('api-key', '579b464db66ec23bdd000001379294277c934cf873ffac2373dfc149')
       .set('format', 'json')
       .set('offset', offset.toString())
       .set('limit', limit.toString());
